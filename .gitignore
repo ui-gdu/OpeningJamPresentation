@@ -3,6 +3,7 @@
 
 # Godot 4+ specific ignores
 .godot/
+.Class/
 .nomedia
 
 # Godot-specific ignores

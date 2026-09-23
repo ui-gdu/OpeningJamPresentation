@@ -1,8 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://d2psgm05ihaai"]
+[gd_scene format=3 uid="uid://d2psgm05ihaai"]
 
 [ext_resource type="Script" uid="uid://dhlxss4ccc8qf" path="res://player/player.gd" id="1_rkbax"]
 [ext_resource type="Texture2D" uid="uid://bea2x41ochtuu" path="res://player/players.png" id="2_yw30f"]
 [ext_resource type="Script" uid="uid://cdqofvuf74fkr" path="res://player/snapped_camera.gd" id="3_g1dw6"]
+[ext_resource type="AudioStream" uid="uid://pffyqmbq40kx" path="res://Assets/bg-music.mp3" id="4_yw30f"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oul6g"]
 size = Vector2(16, 16)
@@ -112,7 +113,7 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g1dw6"]
 size = Vector2(20, 4)
 
-[node name="Player" type="CharacterBody2D" groups=["player"]]
+[node name="Player" type="CharacterBody2D" unique_id=1927245685 groups=["player"]]
 script = ExtResource("1_rkbax")
 accel = 1100.0
 deaccel = 1000.0
@@ -121,41 +122,44 @@ jump_height = 80.0
 coyote_time = 0.5
 jump_buffer_time = 0.5
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=913231401]
 visible = false
 position = Vector2(0, -13)
 texture = ExtResource("2_yw30f")
 hframes = 2
 vframes = 5
 
-[node name="Sprite2DCustom" type="Sprite2D" parent="."]
+[node name="Sprite2DCustom" type="Sprite2D" parent="." unique_id=195512778]
 z_index = 50
 position = Vector2(0, -13)
 texture = ExtResource("2_yw30f")
 hframes = 2
 vframes = 5
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=399205997]
 position = Vector2(0, -8)
 shape = SubResource("RectangleShape2D_oul6g")
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=2014909679]
 anchor_mode = 0
 limit_enabled = false
 limit_top = 0
 limit_bottom = 0
 script = ExtResource("3_g1dw6")
 
-[node name="CharacterAnimations" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_g6k8r")
-}
+[node name="CharacterAnimations" type="AnimationPlayer" parent="." unique_id=667658129]
+libraries/ = SubResource("AnimationLibrary_g6k8r")
 
-[node name="HeadPlatform" type="Area2D" parent="."]
+[node name="HeadPlatform" type="Area2D" parent="." unique_id=2029995551]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HeadPlatform"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HeadPlatform" unique_id=851797020]
 position = Vector2(0, -2)
 shape = SubResource("RectangleShape2D_g1dw6")
+
+[node name="bgMusicPlayer" type="AudioStreamPlayer2D" parent="." unique_id=773699217]
+stream = ExtResource("4_yw30f")
+autoplay = true
+parameters/looping = true
 
 [connection signal="area_shape_entered" from="HeadPlatform" to="." method="_on_head_platform_area_shape_entered"]
 [connection signal="area_shape_exited" from="HeadPlatform" to="." method="_on_head_platform_area_shape_exited"]
