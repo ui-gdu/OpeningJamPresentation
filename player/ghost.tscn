@@ -1,0 +1,240 @@
+[gd_scene load_steps=19 format=3 uid="uid://dx31hb66mmenh"]
+
+[ext_resource type="Script" uid="uid://c2pnsrysmkxtv" path="res://player/ghost.gd" id="1_d1rk1"]
+[ext_resource type="Shader" uid="uid://bps6t64vbn4ne" path="res://player/teleport.gdshader" id="2_g67a6"]
+[ext_resource type="Texture2D" uid="uid://bea2x41ochtuu" path="res://player/players.png" id="4_5yobm"]
+[ext_resource type="FontFile" uid="uid://ggdt8lh1gblg" path="res://hud/tic_80_wide.ttf" id="4_shi0y"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_shi0y"]
+resource_local_to_scene = true
+shader = ExtResource("2_g67a6")
+shader_parameter/progress = 1.0
+shader_parameter/noise_desnity = 60.0
+shader_parameter/beam_size = 0.10000000405148
+shader_parameter/color = Color(1.2, 1.2, 1.2, 1)
+
+[sub_resource type="Animation" id="Animation_5yobm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2DCustom:material:shader_parameter/progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="Animation" id="Animation_g67a6"]
+resource_name = "appear"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2DCustom:material:shader_parameter/progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_shi0y"]
+resource_name = "disappear"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2DCustom:material:shader_parameter/progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yep0n"]
+_data = {
+&"RESET": SubResource("Animation_5yobm"),
+&"appear": SubResource("Animation_g67a6"),
+&"disappear": SubResource("Animation_shi0y")
+}
+
+[sub_resource type="Animation" id="Animation_qjkh3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_hg6s5"]
+resource_name = "fall"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_boad6"]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_g6k8r"]
+resource_name = "jump"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_yw30f"]
+resource_name = "run"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Vector2i(0, 0), Vector2i(1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_rgyib"]
+resource_name = "wall_slide"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_g6k8r"]
+_data = {
+&"RESET": SubResource("Animation_qjkh3"),
+&"fall": SubResource("Animation_hg6s5"),
+&"idle": SubResource("Animation_boad6"),
+&"jump": SubResource("Animation_g6k8r"),
+&"run": SubResource("Animation_yw30f"),
+&"wall_slide": SubResource("Animation_rgyib")
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_yep0n"]
+font = ExtResource("4_shi0y")
+font_size = 6
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5yobm"]
+size = Vector2(20, 4)
+
+[node name="Ghost" type="Node2D" groups=["ghost"]]
+script = ExtResource("1_d1rk1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, -13)
+texture = ExtResource("4_5yobm")
+hframes = 2
+vframes = 5
+
+[node name="Sprite2DCustom" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_shi0y")
+position = Vector2(0, -13)
+texture = ExtResource("4_5yobm")
+hframes = 2
+vframes = 5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_yep0n")
+}
+autoplay = "appear"
+
+[node name="CharacterAnimations" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_g6k8r")
+}
+
+[node name="Username" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -55.0
+offset_top = -32.0
+offset_right = 59.0
+offset_bottom = -26.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "username"
+label_settings = SubResource("LabelSettings_yep0n")
+horizontal_alignment = 1
+autowrap_mode = 1
+
+[node name="HeadPlatform" type="Area2D" parent="."]
+position = Vector2(0, -22)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HeadPlatform"]
+shape = SubResource("RectangleShape2D_5yobm")

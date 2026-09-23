@@ -1,0 +1,144 @@
+[gd_scene load_steps=9 format=3 uid="uid://cior1baljyoo8"]
+
+[ext_resource type="Texture2D" uid="uid://b0xjiffh8wdd" path="res://hud/heart_empty.png" id="1_2gk58"]
+[ext_resource type="Script" uid="uid://bdvinexwj5obp" path="res://hud/hud.gd" id="1_318vg"]
+[ext_resource type="Texture2D" uid="uid://du26gi0rn84yn" path="res://hud/heart_full.png" id="2_318vg"]
+[ext_resource type="FontFile" uid="uid://ggdt8lh1gblg" path="res://hud/tic_80_wide.ttf" id="4_w8tcp"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_w8tcp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w8tcp"]
+size = Vector2(80, 270)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_svhta"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_svhta"]
+size = Vector2(320, 270)
+
+[node name="Hud" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+script = ExtResource("1_318vg")
+
+[node name="HeartsEmpty" type="TextureRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -27.0
+offset_top = 3.0
+offset_right = 27.0
+offset_bottom = 21.0
+grow_horizontal = 2
+texture = ExtResource("1_2gk58")
+stretch_mode = 1
+
+[node name="HeartsFull" type="TextureRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -27.0
+offset_top = 3.0
+offset_right = 27.0
+offset_bottom = 21.0
+grow_horizontal = 2
+texture = ExtResource("2_318vg")
+stretch_mode = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 0
+
+[node name="LeftButton" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_disabled_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("4_w8tcp")
+theme_override_font_sizes/font_size = 12
+theme_override_styles/focus = SubResource("StyleBoxEmpty_w8tcp")
+disabled = true
+action_mode = 0
+text = "<        "
+flat = true
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="HBoxContainer/LeftButton"]
+position = Vector2(40, 135)
+shape = SubResource("RectangleShape2D_w8tcp")
+shape_centered = false
+action = "move_left"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+theme_override_constants/separation = 0
+
+[node name="Control" type="Control" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="JumpButton" type="Button" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_colors/font_disabled_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("4_w8tcp")
+theme_override_font_sizes/font_size = 12
+theme_override_styles/focus = SubResource("StyleBoxEmpty_svhta")
+disabled = true
+action_mode = 0
+text = "
+
+
+
+
+
+
+
+
+
+
+
+^"
+flat = true
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="HBoxContainer/VBoxContainer/JumpButton"]
+position = Vector2(80, 135)
+shape = SubResource("RectangleShape2D_svhta")
+shape_centered = false
+action = "jump"
+
+[node name="RightButton" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_disabled_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("4_w8tcp")
+theme_override_font_sizes/font_size = 12
+theme_override_styles/focus = SubResource("StyleBoxEmpty_svhta")
+disabled = true
+action_mode = 0
+text = "        >"
+flat = true
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="HBoxContainer/RightButton"]
+position = Vector2(121, 135)
+shape = SubResource("RectangleShape2D_w8tcp")
+shape_centered = false
+action = "move_right"

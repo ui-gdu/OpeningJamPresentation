@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://cx01qsy8esdmy"]
+
+[ext_resource type="Script" uid="uid://dhosd4ckcp125" path="res://entity/crusher/crusher.gd" id="1_ke2ex"]
+[ext_resource type="Texture2D" uid="uid://c7boqxdrvp2hv" path="res://characters.png" id="1_qrglt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ke2ex"]
+size = Vector2(18, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qwuww"]
+size = Vector2(18, 18)
+
+[node name="Crusher" type="AnimatableBody2D"]
+script = ExtResource("1_ke2ex")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_qrglt")
+hframes = 9
+vframes = 3
+frame = 11
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_ke2ex")
+
+[node name="SlamArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SlamArea"]
+visible = false
+shape = SubResource("RectangleShape2D_qwuww")

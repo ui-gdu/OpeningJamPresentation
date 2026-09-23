@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://biar3cgaevk6i"]
+
+[ext_resource type="Texture2D" uid="uid://pver3xpq40i2" path="res://slide/lightcast.png" id="1_l357l"]
+
+[node name="LightcastLogo" type="Node" unique_id=1178156334]
+
+[node name="Lightcast2" type="Sprite2D" parent="." unique_id=562094222]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(87, 255.99998)
+scale = Vector2(0.23333336, 0.23333333)
+texture = ExtResource("1_l357l")
+
+[node name="Lightcast" type="Sprite2D" parent="." unique_id=1127619742]
+position = Vector2(85, 253.99998)
+scale = Vector2(0.23333336, 0.23333333)
+texture = ExtResource("1_l357l")

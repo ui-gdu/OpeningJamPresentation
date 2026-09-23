@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://br404iqerany6"]
+
+[ext_resource type="Script" uid="uid://d03jiwvit6bdp" path="res://server/client.gd" id="1_gdh7v"]
+
+[node name="Client" type="Node" unique_id=1499308772]
+script = ExtResource("1_gdh7v")
+
+[node name="SendTimer" type="Timer" parent="." unique_id=1444655167]
+wait_time = 0.05
+autostart = true
+
+[node name="EnsureConnectionTimer" type="Timer" parent="." unique_id=1822360182]
+wait_time = 3.0
+autostart = true
+
+[connection signal="timeout" from="SendTimer" to="." method="send_data"]
+[connection signal="timeout" from="EnsureConnectionTimer" to="." method="ensure_connection"]

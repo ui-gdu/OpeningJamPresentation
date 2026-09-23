@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://cexorgdgyoy6m"]
+
+[ext_resource type="Script" uid="uid://dl7s7usra0luf" path="res://game.gd" id="1_feb5d"]
+[ext_resource type="PackedScene" uid="uid://cior1baljyoo8" path="res://hud/hud.tscn" id="2_e2o6t"]
+[ext_resource type="PackedScene" uid="uid://dhlipklo4fjmt" path="res://stage/jam_class.tscn" id="2_fc0e3"]
+[ext_resource type="AudioStream" uid="uid://pffyqmbq40kx" path="res://Assets/bg-music.mp3" id="4_fc0e3"]
+
+[node name="Game" type="Node" unique_id=480387815]
+script = ExtResource("1_feb5d")
+
+[node name="JamClass" parent="." unique_id=101654646 instance=ExtResource("2_fc0e3")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1036860289]
+
+[node name="Hud" parent="CanvasLayer" unique_id=341609762 instance=ExtResource("2_e2o6t")]
+size_flags_horizontal = 1
+size_flags_vertical = 1
+
+[node name="bgMusicPlayer" type="AudioStreamPlayer2D" parent="." unique_id=447763713]
+stream = ExtResource("4_fc0e3")
+autoplay = true
+parameters/looping = true
